@@ -4,5 +4,5 @@
 int main() {
 
 	std::cout << "anthony aime les jeux de mineur ',:| like are we fr bro ? ";
-	std::cout << "are you serious right now";
+	std::cout << "are you serious right nowdwqddwqd";
 }
