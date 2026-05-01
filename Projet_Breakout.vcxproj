@@ -131,8 +131,10 @@
     <ClCompile Include="B_incassable.cpp" />
     <ClCompile Include="B_normal.cpp" />
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="Grid.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="Mesfonction.cpp" />
+    <ClCompile Include="Menu.cpp" />
+    <ClCompile Include="mesFonctions.cpp" />
     <ClCompile Include="Paddle.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -142,7 +144,9 @@
     <ClInclude Include="B_incassable.h" />
     <ClInclude Include="B_normal.h" />
     <ClInclude Include="Game.h" />
-    <ClInclude Include="Mesfonctions.h" />
+    <ClInclude Include="Grid.h" />
+    <ClInclude Include="Menu.h" />
+    <ClInclude Include="mesFonctions.h" />
     <ClInclude Include="Paddle.h" />
   </ItemGroup>
   <ItemGroup>
