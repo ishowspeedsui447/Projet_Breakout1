@@ -5,7 +5,7 @@ Ball::Ball(float debutX, float debutY)
 	forme.setRadius(rayon);
 	forme.setOrigin(rayon, rayon);
 	forme.setPosition(debutX, debutY);
-	forme.setFillColor(sf::Color::Red);
+	forme.setFillColor(sf::Color::White);
 	mouvement = sf::Vector2f(4.0f, -4.0f);
 }
 void Ball::update(int windowWidth, int windowHeight)
