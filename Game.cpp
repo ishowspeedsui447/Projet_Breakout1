@@ -10,11 +10,32 @@ Game::Game()
     init();
 }
 
+//LOOP
+void Game::play() {
+
+    while (window.isOpen()) {
+
+        float dt = clock.restart().asSeconds();
+
+        handleEvents();
+
+        if (isRunning) {
+            update(dt);
+        }
+
+        render();
+
+        sf::sleep(sf::milliseconds(16));
+
+    }
+}
+
 //INIT
 void Game::init() {
     lives = 3;
     score = 0;
 
+    state = MENU;
     isRunning = true;
     isGameOver = false;
     isWin = false;
@@ -28,8 +49,21 @@ void Game::handleEvents() {
     sf::Event event;
 
     while (window.pollEvent(event)) {
+
         if (event.type == sf::Event::Closed)
             window.close();
+
+        // ================= MENU =================
+        if (state == MENU) {
+
+            Menu::Action action = menu.handleEvent(window, event);
+
+            if (action == Menu::Action::Play)
+                state = PLAYING;
+
+            if (action == Menu::Action::Quit)
+                window.close();
+        }
     }
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
@@ -42,12 +76,15 @@ void Game::handleEvents() {
 //UPDATE
 void Game::update(float dt) {
 
+    if (state != PLAYING)
+        return;
+
     paddle.update(window.getSize().x);
 
     // balle attachée au paddle
     if (!ballLaunched) {
         ball = Ball(
-            paddle.getPosition().x + 50,
+            paddle.getPosition().x,
             paddle.getPosition().y - 20
         );
     }
@@ -56,6 +93,7 @@ void Game::update(float dt) {
     }
 
     handleCollisions();
+
 
     // perte de vie
     if (ball.getPosition().y > window.getSize().y) {
@@ -81,11 +119,15 @@ void Game::handleCollisions() {
 
     // paddle
     if (ball.getBounds().intersects(paddle.getBounds())) {
-        ball.bondY();
+        ball.reboundFromPaddle(
+            paddle.getPosition().x,
+            paddle.getBounds().width
+        );
     }
 
     // briques via Grid
     score += grid.handleCollision(ball);
+
 }
 
 //RENDER
@@ -93,14 +135,20 @@ void Game::render() {
 
     window.clear();
 
-    grid.draw(window);
-    paddle.draw(window);
-   /* ball.draw(window);*/
+    if (state == MENU)
+    {
+        menu.draw(window);
+    }
+    else if (state == PLAYING)
+    {
+        grid.draw(window);
+        paddle.draw(window);
+        ball.draw(window);
+        drawHUD();
 
-    drawHUD();
-
-    if (isGameOver)
-        drawEndScreen();
+        if (isGameOver)
+            drawEndScreen();
+    }
 
     window.display();
 }
@@ -133,8 +181,8 @@ void Game::resetRound() {
 
 void Game::resetGame() {
 
+    grid = Grid();
     init();
-   /* grid.reset();*/
 }
 
 //TEXTE
@@ -156,20 +204,3 @@ void Game::drawText(const std::string& str, float x, float y,
     window.draw(text);
 }
 
-//LOOP
-void Game::play() {
-
-    while (window.isOpen()) {
-
-        float dt = clock.restart().asSeconds();
-
-        handleEvents();
-
-        if (isRunning)
-            update(dt);
-
-        render();
-
-        sf::sleep(sf::milliseconds(16));
-    }
-}

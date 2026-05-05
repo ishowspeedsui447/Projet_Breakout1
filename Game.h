@@ -4,7 +4,8 @@
 #include <string>
 #include "Ball.h"
 #include "Paddle.h"
-#include "grid.h"
+#include "Grid.h"
+#include "Menu.h"
 
 class Game {
 private:
@@ -13,6 +14,16 @@ private:
     Ball ball;
     Paddle paddle;
     Grid grid;
+
+    enum GameState {
+        MENU,
+        PLAYING,
+        END
+    };
+
+    GameState state;
+
+    Menu menu;
 
     bool isRunning;
     bool isGameOver;

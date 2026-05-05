@@ -16,6 +16,7 @@ public:
 	void draw(sf::RenderWindow& window);
 	void bondX();
 	void bondY();
+	void reboundFromPaddle(float paddleX, float paddleWidth);
 	const sf::CircleShape& getForme() const;
 	sf::FloatRect getBounds()const;
 	sf::Vector2f getPosition()const;

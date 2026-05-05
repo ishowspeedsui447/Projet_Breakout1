@@ -5,7 +5,7 @@ Ball::Ball(float debutX, float debutY)
 	forme.setRadius(rayon);
 	forme.setOrigin(rayon, rayon);
 	forme.setPosition(debutX, debutY);
-	forme.setFillColor(sf::Color::Red);
+	forme.setFillColor(sf::Color::White);
 	mouvement = sf::Vector2f(4.0f, -4.0f);
 }
 void Ball::update(int windowWidth, int windowHeight)
@@ -21,6 +21,11 @@ void Ball::update(int windowWidth, int windowHeight)
 	}
 }
 
+void Ball::draw(sf::RenderWindow& window)
+{
+	window.draw(forme);
+}
+
 void Ball::bondX()
 {
 	mouvement.x = -mouvement.x;
@@ -29,6 +34,20 @@ void Ball::bondX()
 void Ball::bondY()
 {
 	mouvement.y = -mouvement.y;
+}
+
+void Ball::reboundFromPaddle(float paddleX, float paddleWidth)
+{
+	float ballX = forme.getPosition().x;
+	float paddleCenter = paddleX;
+
+	float distance = ballX - paddleCenter;
+
+	// petite division pour éviter vitesse trop grande
+	mouvement.x = distance / 10;
+
+	// toujours vers le haut
+	mouvement.y = -abs(mouvement.y);
 }
 
 const sf::CircleShape& Ball::getForme() const
