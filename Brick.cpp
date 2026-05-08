@@ -10,6 +10,13 @@ Brick::Brick(int vie, float x, float y, float w, float h) : vie(vie)
     forme.setFillColor(Color::Blue);
 }
 
+Brick::Brick() : vie(1)
+{
+    forme.setSize(Vector2f(60, 20));
+    forme.setPosition(0, 0);
+    forme.setFillColor(Color::Blue);
+}
+
 Brick::~Brick() {}
 
 void Brick::hit()

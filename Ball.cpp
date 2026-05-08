@@ -8,6 +8,12 @@ Ball::Ball(float debutX, float debutY)
 	forme.setFillColor(sf::Color::White);
 	mouvement = sf::Vector2f(4.0f, -4.0f);
 }
+
+void Ball::setPosition(float x, float y)
+{
+	forme.setPosition(x, y);
+}
+
 void Ball::update(int windowWidth, int windowHeight)
 {
 	forme.move(mouvement);

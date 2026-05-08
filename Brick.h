@@ -7,6 +7,7 @@ protected:
     sf::RectangleShape forme;
 public:
     Brick(int vie, float x, float y, float w, float h);
+    Brick();
     virtual ~Brick();
     virtual void hit();
     virtual void draw(sf::RenderWindow& window);

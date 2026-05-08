@@ -1,7 +1,6 @@
 #include "Game.h"
-#include <SFML/Graphics.hpp>
 
-//CONSTRUCTEUR
+// ================= CONSTRUCTEUR =================
 Game::Game()
     : window(sf::VideoMode(800, 600), "Breakout Fruits"),
     ball(400, 300),
@@ -10,7 +9,11 @@ Game::Game()
     init();
 }
 
-//INIT
+Game::~Game()
+{
+}
+
+// ================= INIT =================
 void Game::init() {
     lives = 3;
     score = 0;
@@ -23,31 +26,35 @@ void Game::init() {
     font.loadFromFile("arial.ttf");
 }
 
-//EVENTS
+// ================= EVENTS =================
 void Game::handleEvents() {
     sf::Event event;
 
     while (window.pollEvent(event)) {
-        if (event.type == sf::Event::Closed)
+        if (event.type == sf::Event::Closed) {
             window.close();
+        }
     }
 
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
         ballLaunched = true;
+    }
 
-    if (isGameOver && sf::Keyboard::isKeyPressed(sf::Keyboard::R))
+    if (isGameOver && sf::Keyboard::isKeyPressed(sf::Keyboard::R)) {
         resetGame();
+    }
 }
 
-//UPDATE
+// ================= UPDATE =================
 void Game::update(float dt) {
 
     paddle.update(window.getSize().x);
 
     // balle attachée au paddle
-    if (!ballLaunched) {
-        ball = Ball(
-            paddle.getPosition().x + 50,
+    if (!ballLaunched)
+    {
+        ball.setPosition(
+            paddle.getPosition().x,
             paddle.getPosition().y - 20
         );
     }
@@ -80,8 +87,12 @@ void Game::update(float dt) {
 void Game::handleCollisions() {
 
     // paddle
-    if (ball.getBounds().intersects(paddle.getBounds())) {
-        ball.bondY();
+    if (ball.getBounds().intersects(paddle.getBounds()))
+    {
+        ball.reboundFromPaddle(
+            paddle.getPosition().x,
+            paddle.getBounds().width
+        );
     }
 
     // briques via Grid
@@ -95,7 +106,7 @@ void Game::render() {
 
     grid.draw(window);
     paddle.draw(window);
-   /* ball.draw(window);*/
+    ball.draw(window);
 
     drawHUD();
 
@@ -105,13 +116,13 @@ void Game::render() {
     window.display();
 }
 
-//HUD
+// ================= HUD =================
 void Game::drawHUD() {
     drawText("Lives: " + std::to_string(lives), 10, 10, 20, sf::Color::White);
     drawText("Score: " + std::to_string(score), 650, 10, 20, sf::Color::White);
 }
 
-//FIN
+// ================= END =================
 void Game::drawEndScreen() {
 
     if (isWin)
@@ -122,7 +133,7 @@ void Game::drawEndScreen() {
     drawText("Press R to restart", 400, 320, 20, sf::Color::White, true);
 }
 
-//RESET
+// ================= RESET =================
 void Game::resetRound() {
 
     ballLaunched = false;
@@ -134,10 +145,10 @@ void Game::resetRound() {
 void Game::resetGame() {
 
     init();
-   /* grid.reset();*/
+    grid.reset();
 }
 
-//TEXTE
+// ================= TEXTE =================
 void Game::drawText(const std::string& str, float x, float y,
     unsigned size, sf::Color color, bool center)
 {
@@ -156,7 +167,7 @@ void Game::drawText(const std::string& str, float x, float y,
     window.draw(text);
 }
 
-//LOOP
+// ================= LOOP =================
 void Game::play() {
 
     while (window.isOpen()) {
