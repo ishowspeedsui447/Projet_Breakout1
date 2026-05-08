@@ -1,6 +1,7 @@
 ﻿#pragma once
 
 #include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
 #include <string>
 #include "Ball.h"
 #include "Paddle.h"
@@ -25,6 +26,23 @@ private:
     sf::Clock clock;
     sf::Font font;
 
+    //SONS
+
+    sf::SoundBuffer wallBuffer;
+    sf::SoundBuffer paddleBuffer;
+    sf::SoundBuffer brickBuffer;
+    sf::SoundBuffer hardBrickBuffer;
+    sf::SoundBuffer loseBuffer;
+    sf::SoundBuffer endGameBuffer;
+
+    sf::Sound wallSound;
+    sf::Sound paddleSound;
+    sf::Sound brickSound;
+    sf::Sound hardBrickSound;
+    sf::Sound loseSound;
+    sf::Sound endGameSound;
+
+    sf::Music backgroundMusic;
 public:
     Game();
     ~Game();
