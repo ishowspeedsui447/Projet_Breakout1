@@ -13,7 +13,6 @@ private:
     B_normal normal[ROWS][COLS];
     B_dur dur[ROWS][COLS];
     B_incassable incassable[ROWS][COLS];
-    int type[ROWS][COLS]; // 0=normal, 1=dur, 2=incassable
 
 public:
     Grid();

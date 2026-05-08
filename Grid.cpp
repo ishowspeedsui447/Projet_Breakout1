@@ -16,40 +16,31 @@ void Grid::init() {
             float x = 60 + j * 70;
             float y = 50 + i * 30;
 
-            int t = rand() % 3;
-            type[i][j] = t;
-
-            if (t == 0)
-                normal[i][j] = B_normal(x, y);
-            else if (t == 1)
-                dur[i][j] = B_dur(x, y);
-            else
-                incassable[i][j] = B_incassable(x, y);
+            normal[i][j] = B_normal(x, y);
+            dur[i][j] = B_dur(x, y);
+            incassable[i][j] = B_incassable(x, y);
         }
     }
 }
 
 int Grid::handleCollision(Ball& ball) {
 
-
     int score = 0;
 
     for (int i = 0; i < ROWS; i++) {
         for (int j = 0; j < COLS; j++) {
 
-            if (type[i][j] == 0) {
-                if (!normal[i][j].isDestroyed() &&
-                    ball.getBounds().intersects(normal[i][j].getBounds())) {
-
-                    normal[i][j].hit();
+            // ligne 0 = incassable
+            if (i == 0) {
+                if (ball.getBounds().intersects(incassable[i][j].getBounds())) {
+                    incassable[i][j].hit();
                     ball.bondY();
-                    score += 10;
                 }
             }
-            else if (type[i][j] == 1) {
-                if (!dur[i][j].isDestroyed() &&
-                    ball.getBounds().intersects(dur[i][j].getBounds())) {
 
+            // ligne 1 = dur
+            else if (i == 1) {
+                if (ball.getBounds().intersects(dur[i][j].getBounds())) {
                     dur[i][j].hit();
                     ball.bondY();
 
@@ -57,9 +48,15 @@ int Grid::handleCollision(Ball& ball) {
                         score += 20;
                 }
             }
+
+            // reste = normal
             else {
-                if (ball.getBounds().intersects(incassable[i][j].getBounds())) {
+                if (ball.getBounds().intersects(normal[i][j].getBounds())) {
+                    normal[i][j].hit();
                     ball.bondY();
+
+                    if (normal[i][j].isDestroyed())
+                        score += 10;
                 }
             }
         }
@@ -73,17 +70,12 @@ void Grid::draw(sf::RenderWindow& window) {
     for (int i = 0; i < ROWS; i++) {
         for (int j = 0; j < COLS; j++) {
 
-            if (type[i][j] == 0) {
-                if (!normal[i][j].isDestroyed())
-                    normal[i][j].draw(window);
-            }
-            else if (type[i][j] == 1) {
-                if (!dur[i][j].isDestroyed())
-                    dur[i][j].draw(window);
-            }
-            else {
+            if (i == 0)
                 incassable[i][j].draw(window);
-            }
+            else if (i == 1)
+                dur[i][j].draw(window);
+            else
+                normal[i][j].draw(window);
         }
     }
 }
