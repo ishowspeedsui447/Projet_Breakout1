@@ -116,13 +116,13 @@ void Game::render() {
     window.display();
 }
 
-// ================= HUD =================
+//HUD
 void Game::drawHUD() {
     drawText("Lives: " + std::to_string(lives), 10, 10, 20, sf::Color::White);
     drawText("Score: " + std::to_string(score), 650, 10, 20, sf::Color::White);
 }
 
-// ================= END =================
+//END
 void Game::drawEndScreen() {
 
     if (isWin)
@@ -133,7 +133,7 @@ void Game::drawEndScreen() {
     drawText("Press R to restart", 400, 320, 20, sf::Color::White, true);
 }
 
-// ================= RESET =================
+//RESET
 void Game::resetRound() {
 
     ballLaunched = false;
@@ -148,7 +148,7 @@ void Game::resetGame() {
     grid.reset();
 }
 
-// ================= TEXTE =================
+//TEXTE
 void Game::drawText(const std::string& str, float x, float y,
     unsigned size, sf::Color color, bool center)
 {
@@ -167,7 +167,7 @@ void Game::drawText(const std::string& str, float x, float y,
     window.draw(text);
 }
 
-// ================= LOOP =================
+//LOOP
 void Game::play() {
 
     while (window.isOpen()) {

@@ -11,6 +11,8 @@
 class Grid {
 private:
 
+    sf::RectangleShape border;
+
     static const int ROWS = 5;
     static const int COLS = 10;
 

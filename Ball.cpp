@@ -27,6 +27,20 @@ void Ball::update(int windowWidth, int windowHeight)
 	}
 }
 
+void Ball::reboundFromPaddle(float paddleX, float paddleWidth)
+{
+	float ballX = forme.getPosition().x;
+	float paddleCenter = paddleX;
+
+	float distance = ballX - paddleCenter;
+
+	// petite division pour éviter vitesse trop grande
+	mouvement.x = distance / 15;
+
+	// toujours vers le haut
+	mouvement.y = -abs(mouvement.y);
+}
+
 void Ball::bondX()
 {
 	mouvement.x = -mouvement.x;
@@ -50,6 +64,11 @@ sf::FloatRect Ball::getBounds() const
 sf::Vector2f Ball::getPosition() const
 {
 	return forme.getPosition();
+}
+
+void Ball::draw(sf::RenderWindow& window)
+{ 
+	window.draw(forme);
 }
 
 Ball::~Ball()
