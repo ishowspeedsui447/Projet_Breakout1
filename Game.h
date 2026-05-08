@@ -31,16 +31,18 @@ private:
     sf::SoundBuffer wallBuffer;
     sf::SoundBuffer paddleBuffer;
     sf::SoundBuffer brickBuffer;
-    sf::SoundBuffer hardBrickBuffer;
     sf::SoundBuffer loseBuffer;
     sf::SoundBuffer endGameBuffer;
+    sf::SoundBuffer startingBuffer;
+    sf::SoundBuffer menuBuffer;
 
     sf::Sound wallSound;
     sf::Sound paddleSound;
     sf::Sound brickSound;
-    sf::Sound hardBrickSound;
     sf::Sound loseSound;
     sf::Sound endGameSound;
+    sf::Sound startingSound;
+    sf::Sound menuBuffer;
 
     sf::Music backgroundMusic;
 public:

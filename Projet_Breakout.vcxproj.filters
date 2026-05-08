@@ -13,6 +13,9 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Fichiers de ressources\sons">
+      <UniqueIdentifier>{9c199312-aba6-4ae4-af41-b4f115d7a7e2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="B_dur.cpp">
@@ -88,5 +91,31 @@
     <Font Include="ARIAL.TTF">
       <Filter>Fichiers de ressources</Filter>
     </Font>
+  </ItemGroup>
+  <ItemGroup>
+    <Media Include="sons\background_sound.mp3">
+      <Filter>Fichiers de ressources\sons</Filter>
+    </Media>
+    <Media Include="sons\brick_sound.mp3">
+      <Filter>Fichiers de ressources\sons</Filter>
+    </Media>
+    <Media Include="sons\end_sound.mp3">
+      <Filter>Fichiers de ressources\sons</Filter>
+    </Media>
+    <Media Include="sons\lostLife_sound.mp3">
+      <Filter>Fichiers de ressources\sons</Filter>
+    </Media>
+    <Media Include="sons\menu_sound.mp3">
+      <Filter>Fichiers de ressources\sons</Filter>
+    </Media>
+    <Media Include="sons\paddle_sound.mp3">
+      <Filter>Fichiers de ressources\sons</Filter>
+    </Media>
+    <Media Include="sons\starting_sound.mp3">
+      <Filter>Fichiers de ressources\sons</Filter>
+    </Media>
+    <Media Include="sons\wall_sound.mp3">
+      <Filter>Fichiers de ressources\sons</Filter>
+    </Media>
   </ItemGroup>
 </Project>
