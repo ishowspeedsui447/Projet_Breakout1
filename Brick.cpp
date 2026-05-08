@@ -33,11 +33,14 @@ bool Brick::isDestroyed() const
     return vie <= 0;
 }
 
+bool Brick::isUnbreakable() const {
+    return false;
+}
+
 void Brick::draw(RenderWindow& window)
 {
     if (!isDestroyed())
     {
         window.draw(forme);
     }
-
 }
