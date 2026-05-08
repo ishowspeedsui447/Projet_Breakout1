@@ -40,6 +40,7 @@ public:
 	void printInfo(std::ostream& sortie) const;	   // affiche le nb de vie, le nb de déplacements et le nb de gouttes d'eau ramassées
 	void printEndGame(std::ostream& sortie) const; // affiche les messages game over et victoire?
     Game();
+    ~Game();
 
     void init();
 

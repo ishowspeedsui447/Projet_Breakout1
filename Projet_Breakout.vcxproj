@@ -152,6 +152,19 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <Font Include="ARIAL.TTF" />
+  </ItemGroup>
+  <ItemGroup>
+    <Media Include="sons\background_sound.mp3" />
+    <Media Include="sons\brick_sound.mp3" />
+    <Media Include="sons\end_sound.mp3" />
+    <Media Include="sons\lostLife_sound.mp3" />
+    <Media Include="sons\menu_sound.mp3" />
+    <Media Include="sons\paddle_sound.mp3" />
+    <Media Include="sons\starting_sound.mp3" />
+    <Media Include="sons\wall_sound.mp3" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

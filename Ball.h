@@ -11,8 +11,9 @@ private:
 public:
 
 	Ball(float debutX, float debutY);
-
+	void setPosition(float x, float y);
 	void update(int windowWidth, int windowHeight);
+	void reboundFromPaddle(float paddleX, float paddleWidth);
 	void draw(sf::RenderWindow& window);
 	void bondX();
 	void bondY();

@@ -1,63 +1,80 @@
-#include "Grid.h"
+﻿#include "Grid.h"
+#include "Brick.h"
 #include "B_normal.h"
 #include "B_dur.h"
 #include "B_incassable.h"
 #include "Ball.h"
 
 Grid::Grid() {
+ 
+    //float gridWidth = 800;
+    //float gridHeight = 400;
+
+    //border.setSize(sf::Vector2f(gridWidth, gridHeight));
+    //border.setPosition(10, 20);
+    //border.setOutlineThickness(5);
+    //border.setFillColor(sf::Color::Transparent);
+    //border.setOutlineColor(sf::Color::Red);
+
     init();
 }
 
-void Grid::init() {
+Grid::~Grid()
+{
+    for (int i = 0; i < ROWS; i++) {
+        for (int j = 0; j < COLS; j++) {
 
+            delete bricks[i][j];
+        }
+    }
+}
+
+void Grid::init()
+{
     for (int i = 0; i < ROWS; i++) {
         for (int j = 0; j < COLS; j++) {
 
             float x = 60 + j * 70;
             float y = 50 + i * 30;
 
-            normal[i][j] = B_normal(x, y);
-            dur[i][j] = B_dur(x, y);
-            incassable[i][j] = B_incassable(x, y);
+            int r = rand() % 3;
+
+            if (r == 0)
+                bricks[i][j] = new B_normal(x, y);
+
+            else if (r == 1)
+                bricks[i][j] = new B_dur(x, y);
+
+            else
+                bricks[i][j] = new B_incassable(x, y);
         }
     }
 }
 
-int Grid::handleCollision(Ball& ball) {
-
+int Grid::handleCollision(Ball& ball)
+{
     int score = 0;
 
     for (int i = 0; i < ROWS; i++) {
         for (int j = 0; j < COLS; j++) {
 
-            // ligne 0 = incassable
-            if (i == 0) {
-                if (ball.getBounds().intersects(incassable[i][j].getBounds())) {
-                    incassable[i][j].hit();
-                    ball.bondY();
+            // Si la brique n'est pas détruite et qu'il y a collision
+            if (!bricks[i][j]->isDestroyed() &&
+                ball.getBounds().intersects(bricks[i][j]->getBounds()))
+            {
+                // On enregistre le coup porté à la brique
+                bricks[i][j]->hit();
+
+                // On fait rebondir la balle dans tous les cas
+                ball.bondY();
+
+                // CONDITION : On n'ajoute des points que si la brique N'EST PAS incassable
+                if (!bricks[i][j]->isUnbreakable()) {
+                    score += 10;
                 }
-            }
 
-            // ligne 1 = dur
-            else if (i == 1) {
-                if (ball.getBounds().intersects(dur[i][j].getBounds())) {
-                    dur[i][j].hit();
-                    ball.bondY();
-
-                    if (dur[i][j].isDestroyed())
-                        score += 20;
-                }
-            }
-
-            // reste = normal
-            else {
-                if (ball.getBounds().intersects(normal[i][j].getBounds())) {
-                    normal[i][j].hit();
-                    ball.bondY();
-
-                    if (normal[i][j].isDestroyed())
-                        score += 10;
-                }
+                // On retourne le score (soit 10, soit 0 si c'était une incassable)
+                return score;
             }
         }
     }
@@ -65,33 +82,45 @@ int Grid::handleCollision(Ball& ball) {
     return score;
 }
 
-void Grid::draw(sf::RenderWindow& window) {
-
+bool Grid::isCleared()
+{
     for (int i = 0; i < ROWS; i++) {
         for (int j = 0; j < COLS; j++) {
 
-            if (i == 0)
-                incassable[i][j].draw(window);
-            else if (i == 1)
-                dur[i][j].draw(window);
-            else
-                normal[i][j].draw(window);
+            // On utilise le point '.' car 'bricks[i][j]' est un objet, pas un pointeur
+            if (!bricks[i][j]->isDestroyed()) {
+
+                // On vérifie si elle est cassable
+                if (!bricks[i][j]->isUnbreakable()) {
+                    return false;
+                }
+            }
         }
     }
+    return true;
 }
 
-bool Grid::isCleared() {
-
-    for (int i = 1; i < ROWS; i++) { // ignore incassable
+void Grid::reset()
+{
+    for (int i = 0; i < ROWS; i++) {
         for (int j = 0; j < COLS; j++) {
 
-            if (i == 1 && !dur[i][j].isDestroyed())
-                return false;
-
-            if (i > 1 && !normal[i][j].isDestroyed())
-                return false;
+            delete bricks[i][j];
         }
     }
 
-    return true;
+    init();
+}
+
+void Grid::draw(sf::RenderWindow& window)
+{
+    /*window.draw(border);*/
+
+    for (int i = 0; i < ROWS; i++) {
+        for (int j = 0; j < COLS; j++) {
+            if (!bricks[i][j]->isDestroyed()) {
+                bricks[i][j]->draw(window);
+            }
+        }
+    }
 }

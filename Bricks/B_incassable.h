@@ -10,6 +10,8 @@ public:
 
     B_incassable(float x, float y);
 
+    bool isUnbreakable() const;
+
     void hit() override;
 
     bool isDestroyed() const override;

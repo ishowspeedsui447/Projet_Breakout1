@@ -13,6 +13,10 @@ B_incassable::B_incassable(float x, float y) : Brick(-1, x, y, 60.f, 20.f)
     forme.setFillColor(Color(128, 128, 128));  // grise
 }
 
+bool B_incassable::isUnbreakable() const {
+    return true;
+}
+
 void B_incassable::hit()
 {
 
