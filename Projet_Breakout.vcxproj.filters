@@ -16,21 +16,15 @@
     <Filter Include="Fichiers de ressources\sons">
       <UniqueIdentifier>{9c199312-aba6-4ae4-af41-b4f115d7a7e2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Fichiers d%27en-tête\Bricks">
+      <UniqueIdentifier>{0c7d24f6-f99b-4240-b6d6-db722ad7d88c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers sources\Bricks">
+      <UniqueIdentifier>{8f85d018-8de9-435b-a2d1-bdc06894048d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="B_dur.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
-    <ClCompile Include="B_incassable.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
-    <ClCompile Include="B_normal.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
     <ClCompile Include="Ball.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
-    <ClCompile Include="Brick.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
     <ClCompile Include="Game.cpp">
@@ -51,21 +45,21 @@
     <ClCompile Include="Grid.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
+    <ClCompile Include="Bricks\B_dur.cpp">
+      <Filter>Fichiers sources\Bricks</Filter>
+    </ClCompile>
+    <ClCompile Include="Bricks\B_incassable.cpp">
+      <Filter>Fichiers sources\Bricks</Filter>
+    </ClCompile>
+    <ClCompile Include="Bricks\B_normal.cpp">
+      <Filter>Fichiers sources\Bricks</Filter>
+    </ClCompile>
+    <ClCompile Include="Bricks\Brick.cpp">
+      <Filter>Fichiers sources\Bricks</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="B_dur.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="B_incassable.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="B_normal.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
     <ClInclude Include="Ball.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="Brick.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
     <ClInclude Include="Game.h">
@@ -82,6 +76,18 @@
     </ClInclude>
     <ClInclude Include="Grid.h">
       <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="Bricks\B_dur.h">
+      <Filter>Fichiers d%27en-tête\Bricks</Filter>
+    </ClInclude>
+    <ClInclude Include="Bricks\B_incassable.h">
+      <Filter>Fichiers d%27en-tête\Bricks</Filter>
+    </ClInclude>
+    <ClInclude Include="Bricks\B_normal.h">
+      <Filter>Fichiers d%27en-tête\Bricks</Filter>
+    </ClInclude>
+    <ClInclude Include="Bricks\Brick.h">
+      <Filter>Fichiers d%27en-tête\Bricks</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -2,10 +2,10 @@
 
 #include <SFML/Graphics.hpp>
 
-#include "Brick.h"
-#include "B_normal.h"
-#include "B_dur.h"
-#include "B_incassable.h"
+#include "Bricks/Brick.h"
+#include "Bricks/B_normal.h"
+#include "Bricks/B_dur.h"
+#include "Bricks/B_incassable.h"
 #include "Ball.h"
 
 class Grid {

@@ -1,21 +1,11 @@
 ﻿#include "Grid.h"
-#include "Brick.h"
-#include "B_normal.h"
-#include "B_dur.h"
-#include "B_incassable.h"
+#include "Bricks/Brick.h"
+#include "Bricks/B_normal.h"
+#include "Bricks/B_dur.h"
+#include "Bricks/B_incassable.h"
 #include "Ball.h"
 
 Grid::Grid() {
- 
-    //float gridWidth = 800;
-    //float gridHeight = 400;
-
-    //border.setSize(sf::Vector2f(gridWidth, gridHeight));
-    //border.setPosition(10, 20);
-    //border.setOutlineThickness(5);
-    //border.setFillColor(sf::Color::Transparent);
-    //border.setOutlineColor(sf::Color::Red);
-
     init();
 }
 
