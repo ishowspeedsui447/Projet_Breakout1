@@ -91,7 +91,7 @@ void Game::play() {
 void Game::handleEvents() {
     sf::Event event;
     while (window.pollEvent(event)) {
-        if (event.type == sf::Event::Closed) window.close();
+        if (event.type == sf::Event::Closed) { window.close(); }
 
         switch (currentState) {
 
@@ -274,11 +274,12 @@ void Game::drawHUD() {
 
 //END
 void Game::drawEndScreen() {
-    if (isWin)
+    if (isWin) {
         drawText("VICTOIRE !", 400, 200, 50, sf::Color::Green, true);
-    else
+    }
+    else {
         drawText("GAME OVER", 400, 200, 50, sf::Color::Red, true);
-
+    }
     drawText("Score final : " + std::to_string(score), 400, 280, 25, sf::Color::White, true);
 
     //options

@@ -23,6 +23,17 @@ void Grid::init()
             float y = 50 + i * 30;
 
             int r = rand() % 3;
+            //regle anti encerclement
+            if (r == 2) {
+                // On regarde la brique au-dessus et celle à gauche
+                bool voisinHautIncassable = (i > 0 && bricks[i - 1][j]->isUnbreakable());
+                bool voisinGaucheIncassable = (j > 0 && bricks[i][j - 1]->isUnbreakable());
+
+                // Si les deux sont déjà grises, on force celle-ci à être verte ou rouge
+                if (voisinHautIncassable && voisinGaucheIncassable) {
+                    r = rand() % 2; // r normal ou dur
+                }
+            }
 
             if (r == 0) {
                 bricks[i][j] = new B_normal(x, y);
