@@ -134,7 +134,6 @@
     <ClCompile Include="Grid.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Menu.cpp" />
-    <ClCompile Include="mesFonctions.cpp" />
     <ClCompile Include="Paddle.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -146,7 +145,6 @@
     <ClInclude Include="Game.h" />
     <ClInclude Include="Grid.h" />
     <ClInclude Include="Menu.h" />
-    <ClInclude Include="mesFonctions.h" />
     <ClInclude Include="Paddle.h" />
   </ItemGroup>
   <ItemGroup>
@@ -156,14 +154,14 @@
     <Font Include="ARIAL.TTF" />
   </ItemGroup>
   <ItemGroup>
-    <Media Include="sons\background_sound.mp3" />
-    <Media Include="sons\brick_sound.mp3" />
-    <Media Include="sons\end_sound.mp3" />
-    <Media Include="sons\lostLife_sound.mp3" />
-    <Media Include="sons\menu_sound.mp3" />
-    <Media Include="sons\paddle_sound.mp3" />
-    <Media Include="sons\starting_sound.mp3" />
-    <Media Include="sons\wall_sound.mp3" />
+    <Media Include="Sons\background_sound.wav" />
+    <Media Include="Sons\brick_sound.wav" />
+    <Media Include="Sons\end_sound.wav" />
+    <Media Include="Sons\lostLife_sound.wav" />
+    <Media Include="Sons\menu_sound.wav" />
+    <Media Include="Sons\paddle_sound.wav" />
+    <Media Include="Sons\starting_sound.wav" />
+    <Media Include="Sons\wall_sound.wav" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets" />

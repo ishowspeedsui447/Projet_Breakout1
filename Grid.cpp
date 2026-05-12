@@ -1,9 +1,4 @@
 ﻿#include "Grid.h"
-#include "Bricks/Brick.h"
-#include "Bricks/B_normal.h"
-#include "Bricks/B_dur.h"
-#include "Bricks/B_incassable.h"
-#include "Ball.h"
 
 Grid::Grid() {
     init();
@@ -29,46 +24,50 @@ void Grid::init()
 
             int r = rand() % 3;
 
-            if (r == 0)
+            if (r == 0) {
                 bricks[i][j] = new B_normal(x, y);
-
-            else if (r == 1)
+            }
+            else if (r == 1) {
                 bricks[i][j] = new B_dur(x, y);
-
-            else
+            }
+            else {
                 bricks[i][j] = new B_incassable(x, y);
+            }
         }
     }
 }
 
-int Grid::handleCollision(Ball& ball)
-{
+int Grid::handleCollision(Ball& ball) {
     int score = 0;
 
     for (int i = 0; i < ROWS; i++) {
         for (int j = 0; j < COLS; j++) {
+            //vérifie si la brique existe et s'il y a collision
+            if (!bricks[i][j]->isDestroyed() && ball.getBounds().intersects(bricks[i][j]->getBounds())) {
 
-            // Si la brique n'est pas détruite et qu'il y a collision
-            if (!bricks[i][j]->isDestroyed() &&
-                ball.getBounds().intersects(bricks[i][j]->getBounds()))
-            {
-                // On enregistre le coup porté à la brique
+                sf::FloatRect briquePos = bricks[i][j]->getBounds();
+                sf::Vector2f ballePos = ball.getPosition();
+
+                // Si la balle est bien entre le haut et le bas de la brique, 
+                // c'est qu'elle a tapé sur un côté (gauche ou droit)
+                if (ballePos.y > briquePos.top && ballePos.y < briquePos.top + briquePos.height) {
+                    ball.bondX();
+                }
+                // Sinon, le haut ou bas
+                else {
+                    ball.bondY();
+                }
+
                 bricks[i][j]->hit();
 
-                // On fait rebondir la balle dans tous les cas
-                ball.bondY();
-
-                // CONDITION : On n'ajoute des points que si la brique N'EST PAS incassable
                 if (!bricks[i][j]->isUnbreakable()) {
                     score += 10;
                 }
 
-                // On retourne le score (soit 10, soit 0 si c'était une incassable)
-                return score;
+                return score; //sort pour ne pas cogner deux briques d'un coup
             }
         }
     }
-
     return score;
 }
 
@@ -77,10 +76,9 @@ bool Grid::isCleared()
     for (int i = 0; i < ROWS; i++) {
         for (int j = 0; j < COLS; j++) {
 
-            // On utilise le point '.' car 'bricks[i][j]' est un objet, pas un pointeur
             if (!bricks[i][j]->isDestroyed()) {
 
-                // On vérifie si elle est cassable
+                // vérifie si elle est cassable
                 if (!bricks[i][j]->isUnbreakable()) {
                     return false;
                 }
@@ -104,7 +102,6 @@ void Grid::reset()
 
 void Grid::draw(sf::RenderWindow& window)
 {
-    /*window.draw(border);*/
 
     for (int i = 0; i < ROWS; i++) {
         for (int j = 0; j < COLS; j++) {

@@ -1,12 +1,14 @@
 #pragma once
 
-#include <SFML/Graphics.hpp>
-
 #include "Bricks/Brick.h"
 #include "Bricks/B_normal.h"
 #include "Bricks/B_dur.h"
 #include "Bricks/B_incassable.h"
 #include "Ball.h"
+
+#include <SFML/Graphics.hpp>
+
+
 
 class Grid {
 private:
